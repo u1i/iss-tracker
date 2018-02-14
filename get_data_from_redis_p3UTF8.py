@@ -6,9 +6,9 @@ import time
 from geopy.geocoders import Nominatim
 geolocator = Nominatim()
 
-redis_host = "redis-19233.c1.ap-southeast-1-1.ec2.cloud.redislabs.com"
+redis_host = "redis-XXXX.c1.ap-southeast-1-1.ec2.cloud.redislabs.com"
 redis_port = 19233
-redis_auth = "sotong"
+redis_auth = ""
 
 rc = redis.StrictRedis(host=redis_host, port=redis_port, db=0, password=redis_auth)
 with open('keys.txt') as kfile:
