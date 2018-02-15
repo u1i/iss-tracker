@@ -6,15 +6,15 @@ import time
 from geopy.geocoders import Nominatim
 geolocator = Nominatim()
 
-redis_host = "redis-XXXX.c1.ap-southeast-1-1.ec2.cloud.redislabs.com"
+redis_host = "redis-XXX.c1.ap-southeast-1-1.ec2.cloud.redislabs.com"
 redis_port = 19233
-redis_auth = ""
+redis_auth = "XXXXXXXXXXXXXXX"
 
 rc = redis.StrictRedis(host=redis_host, port=redis_port, db=0, password=redis_auth)
 with open('keys.txt') as kfile:
 	lines = kfile.read().splitlines()
 
-	print ("Utime, Timestamp, Latitude, Longitude, Location")
+	print ("Utime, Timestamp, Latitude, Longitude, TimeAndLocation")
 	for k in lines:
 		d1 = rc.get(k)
 
@@ -41,7 +41,10 @@ with open('keys.txt') as kfile:
 			addr = ""
 		else:
 			addr = location.address
+#			print (latlon)
+#			print (addr)
 
 		timestamp_human = datetime.datetime.fromtimestamp( int(timestamp)).strftime('%Y-%m-%d %H:%M:%S')
+		# print (str(timestamp) + "," + str(timestamp_human) + " UTC," + str(lat) + "," + str(lon) + ',"' +  '"')
 		print (str(timestamp) + "," + str(timestamp_human) + " UTC," + str(lat) + "," + str(lon) + ',"' + addr + '"')
-		# print timestamp, d
+
